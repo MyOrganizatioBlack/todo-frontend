@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App Frontend</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: sans-serif;
+            display: flex;
+            height: 100vh;
+            background: #fafafa;
+        }
+
+        .sidebar {
+            width: 300px;
+            background: #eee;
+            padding: 20px;
+            overflow-y: auto;
+            border-right: 1px solid #ccc;
+        }
+
+        .detail-view {
+            flex: 1;
+            padding: 40px;
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .task-item {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .task-item:hover {
+            background: #ddd;
+        }
+
+        .task-item.completed span {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+
+            border-radiusbutton {
+                padding: 10px;
+                cursor: pointer;
+                border: none;
+                color: white;
+                background: #007bff;
+                border-radius: 4px;
+            }
+
+            .btn-danger {
+                background: #dc3545;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2 style="margin-bottom: 15px;">Mis Tareas <button onclick="createNewTask()" style="float: right;">+</button>
+        </h2>
+        <div id="taskList"></div>
+    </div>
+    <div class="detail-view" id="detailPanel">
+        <input type="hidden" id="taskId">
+        <label>Título: <input type="text" id="taskTitle"></label>
+        <label>Descripción: <textarea id="taskDesc"></textarea></label>
+        <label>Fecha Límite: <input type="date" id="taskDate"></label>
+        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+            <input type="checkbox" id="taskCompleted"> Tarea Completada
+        </label>
+        <div style="margin-top: 20px;">
+            <button onclick="saveTask()">Guardar Cambios</button>
+            <button class="btn-danger" onclick="deleteTask()">Eliminar</button>
+        </div>
+    </div>
+    <div style="flex:1; display:flex; align-items:center; justify-content:center; color: #666;" id="emptyMessage">
+        Selecciona una tarea de la lista lateral o crea una nueva.
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
